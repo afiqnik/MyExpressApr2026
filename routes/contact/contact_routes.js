@@ -50,6 +50,19 @@ router.post('/add', (req, res) => {
   res.redirect('/contacts');
 });
 
+// Handle View Contact Details
+router.get('/:id', (req, res) => {
+  const contact = contacts.find(c => c.id == req.params.id);
 
+  if (!contact) {
+    return res.status(404).send('Contact not found');
+  }
+
+  res.render('contact_pages/contact_details', {
+    title: 'Contact Details',
+    content: 'View detailed information about this contact.',
+    contact
+  });
+});
 
 module.exports = router;
