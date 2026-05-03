@@ -65,4 +65,18 @@ router.get('/:id', (req, res) => {
   });
 });
 
+// Handle Delete Contact
+router.delete('/delete/:id', (req, res) => {
+  const id = parseInt(req.params.id);
+  const index = contacts.findIndex(item => item.id === id);
+
+  if (index === -1) {
+    return res.status(404).send('Contact not found');
+  }
+
+  // Remove From Array And Redirect Back
+  contacts.splice(index, 1);
+  res.redirect('/contacts');
+});
+
 module.exports = router;
