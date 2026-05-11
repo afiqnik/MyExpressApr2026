@@ -43,6 +43,17 @@ app.use('/contacts', contactRoutes);
 const usersRoutes = require('./routes/users/users_routes');
 app.use('/users', usersRoutes);
 
+const reportApiRoutes = require("./routes/api/report_api_routes");
+app.use("/api/reports", reportApiRoutes);
+
+app.use(
+    "/api/files/images",
+    express.static(path.join(__dirname, "files/images"))
+);
+
+const authApiRoutes = require('./routes/api/auth_api_routes');
+app.use('/api/auth', authApiRoutes);
+
 app.listen(PORT, () =>
     console.log(`Server running on: http://localhost:${PORT}`
     ));
