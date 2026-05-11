@@ -1,26 +1,43 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/css/header.css">
-    <title><%= title %></title>
+
+    <!-- Set dynamic browser title -->
+    <title>
+        <%= title %>
+    </title>
 </head>
+
 <body>
     <div class="header">
-       <h1><%= title %></h1>
-       <p><%= content %></p>
+        <h1>
+            <!-- Display page title -->
+            <%= title %>
+        </h1>
+        <p>
+            <!-- Display page content -->
+            <%= content %>
+        </p>
     </div>
     <div class="content">
         <ul>
-        <% posts.forEach(function(post) { %>
-            <li>
-                <a href="/blogs/post/<%= post.id %>">
-                    <%= post.title %></a>
-            </li>
-        <% }); %>
-       </ul>
+            <!-- Loop through all blog posts -->
+            <% posts.forEach(function(post) { %>
+                <li>
+                    <!-- Create dynamic link using post ID -->
+                    <a href="/blogs/post/<%= post.id %>">
+                        <!-- Display blog post title -->
+                        <%= post.title %>
+                    </a>
+                </li>
+                <% }); %>
+        </ul>
     </div>
-   
+
 </body>
+
 </html>
