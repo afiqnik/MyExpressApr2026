@@ -3,6 +3,8 @@ const path = require('path');
 const app = express();
 const PORT = process.env.PORT || 3000;
 // usual port for express.js is 3000
+const methodOverride = require('method-override');
+app.use(methodOverride('_method'));
 
 app.engine('ejs', require('ejs').__express);
 // use double underscore
@@ -32,16 +34,14 @@ app.get('/search', (req, res) => {
     res.send('Search: ' + keyword + ' (page: ' + page + ')');
 });
 
-app.post('/users', (req, res) => {
-    const name = req.query.name;
-    res.status(201).send(`Hello ${name}`);
-});
-
 const blogRoutes = require('./routes/blog/blog_routes');
 app.use('/blogs', blogRoutes);
 
 const contactRoutes = require('./routes/contact/contact_routes');
 app.use('/contacts', contactRoutes);
+
+const usersRoutes = require('./routes/users/users_routes');
+app.use('/users', usersRoutes);
 
 app.listen(PORT, () =>
     console.log(`Server running on: http://localhost:${PORT}`
